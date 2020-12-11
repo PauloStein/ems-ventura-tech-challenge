@@ -7,10 +7,10 @@
     <title></title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
     @section('scripts')        
-    <script type="text/javascript" src="js/graphic.js"></script>
+    <script type="text/javascript" src="js/chart.js"></script>
     <script>
-        var Response = {!! json_encode($responseBody) !!};
-        graphic(Response)        
+        var response = {!! json_encode($responseBody) !!};
+        chart(response)        
     </script>
     @endsection
     <link href="css/style.css" rel="stylesheet" >
@@ -37,9 +37,30 @@
         @endif
         @endif
     @endforeach
-    <div class="graphic">
-        <canvas id="myChart" width="400" height="400"></canvas>
-        @yield('scripts')
-    </div>
+
+    <div>
+        <form action="{{ route('currency.show') }}" method="POST">
+            @csrf
+            <label for="currency">Selecione a moeda</label>   
+            <select name="currency">
+                @foreach ($responseBody2 as $response2)
+                    <option value={{ $response2->code }}>
+                        <h6> {{ $response2->name }} </h6>        
+                    </option>
+                @endforeach
+            </select>
+            <label for="days">Selecione o numero de dias</label> 
+            <select name="days" type="number">                   
+                    <option>5</option>
+                    <option>15</option>                    
+                    <option>30</option>
+            </select>
+            <input type="submit" value="Filtrar">
+            </form>
+        </div>
+        <div class="chart">
+            <canvas id="myChart" width="400" height="400"></canvas>
+            @yield('scripts')
+        </div>
 </body>
 </html>

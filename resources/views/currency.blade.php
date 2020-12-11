@@ -9,7 +9,8 @@
             </option>
         @endforeach
     </select>
-    <input type="submit" value="Submit">
+    <input name="days" type="hidden" value=5>
+    <input type="submit" value="Enviar">
     </form>
 </div>
 <div>
