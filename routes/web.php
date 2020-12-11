@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Currency;
+use App\Http\Controllers\CurrencyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +18,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('currency', [Currency::class, 'currency'])->name('currency');
-
-Route::resource('projects', Currency::class);
+Route::get('currency', [CurrencyController::class, 'currency'])->name('currency');
+Route::post('currency', [CurrencyController::class, 'show'])->name('currency.show');
