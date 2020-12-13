@@ -25,7 +25,6 @@ class CurrencyService {
         } catch (Exception $e) {
             throw $e;
         }
-
     }
 
     public function getCurrencyChartData(string $currencyCode, string $days) {

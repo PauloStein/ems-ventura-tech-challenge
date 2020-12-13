@@ -33,7 +33,7 @@ function chart(dados) {
         options: {
             title: {
                 display: true,
-                text: 'Currency value'
+                text: 'Currency Values'
             }
         }
     });

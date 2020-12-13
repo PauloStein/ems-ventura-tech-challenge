@@ -1,4 +1,77 @@
 .chart {
-    width: 500px;
-    height: 100px;
-  }
+  width: 650px;
+}
+
+.currency-data {
+  width: 250px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+.chart-style {
+  position: relative;
+  border-width: 2px;
+  left: 0px;
+  float: left;
+}
+
+body {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 100vh;
+  font-family: 'Nunito';
+  background-color: #287be0;
+  padding: 0;
+  margin: 0;
+}
+
+.card {
+  background-color: #fafafa;
+  width: 60vw;
+  height: 400px;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: space-evenly;
+  position: relative;
+}
+
+.currency-data-form {
+  padding-top: 10px;
+}
+
+.currency-data-form input, .currency-data-form select {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.card-info {
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  font-style: italic;
+  color: #505050;
+}
+
+.button {
+  background-color: #287be0;
+  border: none;
+  color: white;
+  padding: 5px 28px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+select {
+  border-radius: 6px;
+  height: 30px;
+}
