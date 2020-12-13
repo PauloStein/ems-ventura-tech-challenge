@@ -39,10 +39,9 @@ function chart(dados) {
 
 function timestampToDate(timestamp) {
     var date = new Date(timestamp * 1000);
-    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     var day = date.getDate()
     var month = 1 + date.getMonth();
-    var year = date.getFullYear();
+    // var year = date.getFullYear();
     var formattedDate = (day + "/" + month);
     return formattedDate;
 }
