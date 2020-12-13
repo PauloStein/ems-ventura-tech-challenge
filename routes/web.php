@@ -18,5 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('currency', [CurrencyController::class, 'currency'])->name('currency');
-Route::post('currency', [CurrencyController::class, 'show'])->name('currency.show');
+Route::get('currency', [CurrencyController::class, 'show'])->name('currency.show');
