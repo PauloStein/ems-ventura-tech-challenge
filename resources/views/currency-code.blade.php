@@ -9,14 +9,14 @@
     @section('scripts')        
     <script type="text/javascript" src="js/chart.js"></script>
     <script>
-        var response = {!! json_encode($responseBody) !!};
+        var response = {!! json_encode($specificCurrencyResponseBody) !!};
         chart(response)        
     </script>
     @endsection
     <link href="css/style.css" rel="stylesheet" >
 </head>
 <body>
-    @foreach ($responseBody as $response)
+    @foreach ($specificCurrencyResponseBody as $response)
         @if ($response->code ?? null)
             <div>
                 1 {{$response->name}} igual a
@@ -33,13 +33,12 @@
         @endif
     @endforeach
     <div>
-        <form action="{{ route('currency.show') }}" method="POST">
-            @csrf
+        <form action="{{ route('currency.show') }}" method="GET">
             <label for="currency">Selecione a moeda</label>   
             <select name="currency">
-                @foreach ($responseBody2 as $response2)
-                    <option value= "{{ $response2->code }}-{{ $response2->codein }}">
-                        <h6> {{ $response2->name }} </h6>        
+                @foreach ($allCurrenciesResponseBody as $response)
+                    <option value= "{{ $response->code }}-{{ $response->codein }}">
+                        <h6> {{ $response->name }} </h6>        
                     </option>
                 @endforeach
             </select>

@@ -5,50 +5,39 @@ namespace App\Http\Controllers;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Exception\RequestException;
-use Symfony\Component\Console\Tester\TesterTrait;
+use Illuminate\Support\Facades\Cache;
 
 class CurrencyController extends Controller
 {
-    public function currency()
-    {
-        $client = new Client(); //GuzzleHttp\Client
-
-        $url = "https://economia.awesomeapi.com.br/json/all";
-        $response = "";
-        try {
-            $response = $client->request('GET', $url, [
-                'verify'  => false,
-            ]);
-            $responseBody = json_decode($response->getBody());
-            return view('currency', compact('responseBody'));
-        } catch (RequestException $e) {
-            echo Psr7\Message::toString($e->getRequest());
-            if ($e->hasResponse()) {
-                echo Psr7\Message::toString($e->getResponse());
-            }
-        }
-    }
-
     public function show()
     {
         $client = new Client(); //GuzzleHttp\Client
-        $codeCurrency = htmlspecialchars($_POST['currency']);
-        $daysChart = htmlspecialchars($_POST['days']);
 
-        $url = "https://economia.awesomeapi.com.br/json/daily/" . $codeCurrency . "/" . $daysChart;
-        $url2 = "https://economia.awesomeapi.com.br/json/all";
+        $codeCurrency = isset($_GET['currency']) ? htmlspecialchars($_GET['currency']) : "USD-BRL";
+        $daysChart = isset($_GET['days']) ? htmlspecialchars($_GET['days']) : "5";
+
+        $specificCurrencyUrl = "https://economia.awesomeapi.com.br/json/daily/" . $codeCurrency . "/" . $daysChart;
+        $allCurrenciesUrl = "https://economia.awesomeapi.com.br/json/all";
         try {
-            $response2 = $client->request('GET', $url2, [
-                'verify'  => false,
-            ]);
-            $responseBody2 = json_decode($response2->getBody());
+            if (!Cache::has('allCurrencies')) {
+                $allCurrenciesResponse = $client->request('GET', $allCurrenciesUrl, [
+                    'verify'  => false,
+                ]);
+                Cache::put('key', json_decode($allCurrenciesResponse->getBody()), 3600);
+            }
+            $allCurrenciesResponseBody = Cache::get('key');
 
-            $response = $client->request('GET', $url, [
-                'verify'  => false,
-            ]);
+            $keySelectedCurrency = $codeCurrency . $daysChart;
 
-            $responseBody = json_decode($response->getBody());
-            return view('currency-code', compact('responseBody', 'codeCurrency', 'responseBody2'));
+            if (!Cache::has($keySelectedCurrency)) {
+                $specificCurrencyResponse = $client->request('GET', $specificCurrencyUrl, [
+                    'verify'  => false,
+                ]);
+                Cache::put($keySelectedCurrency, json_decode($specificCurrencyResponse->getBody()), 3600);
+            }
+            $specificCurrencyResponseBody = Cache::get($keySelectedCurrency);
+
+            return view('currency-code', compact('specificCurrencyResponseBody', 'codeCurrency', 'allCurrenciesResponseBody'));
         } catch (RequestException $e) {
             echo Psr7\Message::toString($e->getRequest());
             if ($e->hasResponse()) {
