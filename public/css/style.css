@@ -10,6 +10,7 @@
   justify-content: center;
   text-align: left;
 }
+
 .chart-style {
   position: relative;
   border-width: 2px;
@@ -23,7 +24,7 @@ body {
   flex-direction: row;
   justify-content: center;
   height: 100vh;
-  font-family: 'Nunito';
+  font-family: "Nunito";
   background-color: #287be0;
   padding: 0;
   margin: 0;
@@ -45,7 +46,8 @@ body {
   padding-top: 10px;
 }
 
-.currency-data-form input, .currency-data-form select {
+.currency-data-form input,
+.currency-data-form select {
   width: 100%;
   margin-bottom: 10px;
 }
@@ -71,7 +73,14 @@ body {
   cursor: pointer;
   border-radius: 6px;
 }
+
 select {
   border-radius: 6px;
   height: 30px;
+}
+
+@media screen and (max-width: 1366px) {
+  .card {
+    width: 80vw;
+  }
 }
