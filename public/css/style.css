@@ -53,7 +53,7 @@ body {
 .card-info {
   position: absolute;
   bottom: 10px;
-  left: 20px;
+  right: 20px;
   font-style: italic;
   color: #505050;
 }
