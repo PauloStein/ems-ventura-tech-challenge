@@ -6,16 +6,16 @@ Projeto feito com o intuito de realizar o desafio proposto pela empresa [EMS VEN
 
 Para realizar esse projeto foram utilizadas tecnologias, algumas foram requisitos para o projeto e outras diferenciais, tais como:
 
-- PHP 7.4.
-- Docker.
-- Laravel 8.
+- PHP 7.4 - Utilizado como a linguagem de programação principal.
+- Docker - Utilizado para instanciar os containers.
+- Laravel 8 - Utilizado como framework.
 - API pública AwesomeAPI - Utilizada para gerar as informacoes sobre a cotaçõe das moedas.
 - Guzzlehttp 7.0.1 - Utilizado para fazer os request's na API.
 - ChartJS - Utilizado para gerar o gráfico.
 - Git-commit-msg-linter - Utilizado como diretrizes de mensagem de commit.
-- CSS3
+- CSS3 - Utilizado para estilizar a aplicação.
 
-## Pré-requisito
+## Pré-requisitos
 
 - Tenha o Docker instalado.
 - Tenha o Docker-compose instalado.
@@ -38,4 +38,4 @@ git clone https://github.com/PauloStein/ems-ventura-tech-challenge.git
  docker-compose up
   ```
 
-4. Acesse a [aplicação](localhost:8000).
+4. Acesse a [aplicação](https://127.0.0.1:8000).
