@@ -38,4 +38,4 @@ git clone https://github.com/PauloStein/ems-ventura-tech-challenge.git
  docker-compose up
   ```
 
-4. Acesse a [aplicação](https://127.0.0.1:8000).
+4. Acesse a [aplicação](http://127.0.0.1:8000).
